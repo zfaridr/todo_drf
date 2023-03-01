@@ -16,7 +16,7 @@ const ToDoItem = ({todo}) => {
     )
 }
 
-const ToDoList = ({todo}) => {
+const ToDoList = ({ToDo}) => {
     return (
         <table>
             <th>
@@ -28,7 +28,7 @@ const ToDoList = ({todo}) => {
             <th>
                 days
             </th>
-            {todo.map((todo) => <ToDoItem todo={todo} />)}
+            {ToDo.map((ToDo) => <ToDoItem todo={ToDo} />)}
         </table>
     )
 }

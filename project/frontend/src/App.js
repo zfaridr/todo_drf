@@ -33,9 +33,9 @@ class App extends React.Component {
   // }
 
   componentDidMount() {
-    axios.get('http://127.0.0.1:8000/api/todo')
+    axios.get('http://127.0.0.1:8000/api/todo/')
       .then(response => {
-        const authors = response.data
+        const todo = response.data
           this.setState(
           {
             'todo': todo
@@ -47,7 +47,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <ToDoList todo={this.state.todo} />
+        <ToDoList ToDo={this.state.todo} />
       </div>
     )
   }
