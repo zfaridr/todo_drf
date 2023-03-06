@@ -12,6 +12,12 @@ const ToDoItem = ({todo}) => {
             <td>
                 {todo.days}
             </td>
+            <td>
+                {todo.todousername}
+            </td>
+            <td>
+                {todo.project}
+            </td>
         </tr>
     )
 }
@@ -27,6 +33,12 @@ const ToDoList = ({ToDo}) => {
             </th>
             <th>
                 days
+            </th>
+            <th>
+                username
+            </th>
+            <th>
+                projectname
             </th>
             {ToDo.map((ToDo) => <ToDoItem todo={ToDo} />)}
         </table>
