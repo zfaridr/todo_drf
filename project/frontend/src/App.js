@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import UserList from './components/user.js'
 import ToDoList from './components/todo.js'
+import ProjectList from './components/project.js'
 import axios from 'axios'
 
 class App extends React.Component {
@@ -10,7 +11,8 @@ class App extends React.Component {
     super(props)
     this.state = {
       'todo': [],
-      'user': []
+      'user': [],
+      'project': []
     }
   }
 
@@ -65,6 +67,15 @@ class App extends React.Component {
           }
         )
       }).catch(error => console.log(error))
+    axios.get('http://127.0.0.1:8000/api/project/')
+      .then(response => {
+        const project = response.data
+          this.setState(
+          {
+            'project': project,
+          }
+        )
+      }).catch(error => console.log(error))
   }
 
 
@@ -77,6 +88,9 @@ class App extends React.Component {
           </div>
           <div>
             <UserList User={this.state.user} />
+          </div>
+          <div>
+            <ProjectList Project={this.state.project} />
           </div>
         </div>
       
