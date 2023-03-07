@@ -11,6 +11,7 @@ class Project(models.Model):
     description = models.CharField(max_length=232)
     days = models.PositiveIntegerField()
 
+    
 class ToDo(models.Model):
     name = models.CharField(max_length=64)
     description = models.CharField(max_length=232)

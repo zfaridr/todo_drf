@@ -19,6 +19,10 @@ from rest_framework.routers import DefaultRouter
 from todo.views import ToDoModelViewSet, UserModelViewSet, ProjectModelViewSet
 
 router = DefaultRouter()
+# filter_router = DefaultRouter()
+# filter_router.register('param', UserModelViewSet)
+# filter_router.register('param', ProjectModelViewSet)
+# filter_router.register('param', ToDoModelViewSet)
 router.register('todo', ToDoModelViewSet)
 router.register('user', UserModelViewSet)
 router.register('project', ProjectModelViewSet)
@@ -28,4 +32,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     path('api/', include(router.urls)),
+    # path('filters/', include(filter_router.urls)),
 ]
