@@ -96,7 +96,7 @@ class App extends React.Component {
       
         <div class='MainFooter'>
           <p>
-            Info on main page of the todo_rest
+            Info on main page of the todo app
           </p>
         </div>
       </div>
