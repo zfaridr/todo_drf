@@ -3,7 +3,7 @@ from .models import User, Project, ToDo
 
 class UserFilter(filters.FilterSet):
     name = filters.CharFilter(lookup_expr='contains')
-
+    
     class Meta:
         model = User
         fields = ['username', 'firstname', 'lastname']
