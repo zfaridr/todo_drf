@@ -1,4 +1,5 @@
 from rest_framework.viewsets import ModelViewSet
+from rest_framework import viewsets, permissions
 from .models import ToDo, User, Project
 from .serializers import ToDoModelSerializer, UserModelSerializer, ProjectModelSerializer
 from .filters import UserFilter, ToDoFilter, ProjectFilter
@@ -18,6 +19,7 @@ class UserModelViewSet(ModelViewSet):
     #     return users
 
 class ProjectModelViewSet(ModelViewSet):
+    permission_classes = [permissions.IsAuthenticated]
     queryset = Project.objects.all()
     serializer_class = ProjectModelSerializer
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
