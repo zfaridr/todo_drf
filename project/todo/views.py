@@ -11,6 +11,7 @@ class UserModelViewSet(ModelViewSet):
     serializer_class = UserModelSerializer
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
     
+    
     # def get_queryset(self):
     #     name = self.request.query_params.get('name', '')
     #     users = User.objects.all()
