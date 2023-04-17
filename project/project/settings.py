@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'todo',
     'corsheaders',
     'rest_framework.authtoken',
+    "graphene_django",
 ]
 
 MIDDLEWARE = [
@@ -75,8 +76,12 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ],
     'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.NamespaceVersioning',
+    
 }
 
+GRAPHENE = {
+    "SCHEMA": "project.schema.schema"
+}
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
