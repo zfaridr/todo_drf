@@ -4,6 +4,7 @@ import './App.css';
 import UserList from './components/user.js'
 import ToDoList from './components/todo.js'
 import ProjectList from './components/project.js'
+import ToDoForm from './components/todoform'
 import {BrowserRouter, Route, Link} from 'react-router-dom'
 import axios from 'axios'
 import LoginForm from './components/Auth.js'
@@ -103,6 +104,28 @@ class App extends React.Component {
       }).catch(error => alert('Неверный логин или пароль'))
   }
 
+  deleteToDo(id) {
+    const headers = this.get_headers()
+    axios.delete(`http://127.0.0.1:8000/api/books/${id}`, {headers, headers})
+      .then(response => {
+        this.setState({books: this.state.books.filter((item)=>item.id !== id)})
+      }).catch(error => console.log(error))
+  }
+
+  createToDo(name, user) {
+    const headers = this.get_headers()
+    const data = {name: name, username: user}
+    axios.post(`http://127.0.0.1:8000/api/todo/`, data, {headers, headers})
+      .then(response => {
+        let new_todo = response.data
+        const username = this.state.username.filter((item) => item.username === new_todo.username)[0]
+        new_todo.username = username
+        this.setState({todo: [...this.state.todo, new_todo]})
+      }).catch(error => console.log(error))
+  }
+
+
+
   // componentDidMount() {
   //   const todo = [
   //     {
@@ -184,13 +207,15 @@ class App extends React.Component {
             </ul>
           </nav>
           
+          <Route exact path='/todo/create' component={() => <ToDoForm />}/>
           <Route exact path='/' component={() => <ProjectList items={this.state.project} />} />
           <Route exact path='/todo' component={() => <ToDoList items={this.state.todo} />} />
           <Route exact path='/user' component={() => <UserList items={this.state.user} />} />  
           <Route exact path='/login' component={() => <LoginForm />} />
           <Route exact path='/login' component={() => <LoginForm get_token={(username, password) => this.get_token(username, password)} />} />
           <Route component={NotFound404} />
-          
+          <Route exact path='/todo' component={() => <ToDoList items={this.state.todo} deleteBook={(id)=>this.deleteToDo(id)} />} />
+          <Route exact path='/todo/create' component={() => <ToDoForm users={this.state.username} createToDo={(name, user) => this.createToDo(name, user)} />} />
         </BrowserRouter>
       </div>
     )
